@@ -32,3 +32,4 @@ yarn-error.log
 ###< squizlabs/php_codesniffer ###
 /mysql/
 /.idea
+/public/uploads/admin_file_upload/

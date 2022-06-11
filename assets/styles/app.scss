@@ -7,7 +7,7 @@ $primary: darken(#428bca, 20%);
 @import "~bootstrap/scss/bootstrap";
 @import "variables.scss";
 @import "./Global/global.scss";
-
+@import "./admin/file/file.scss";
  *
  {
    box-sizing: border-box;
@@ -17,4 +17,8 @@ $primary: darken(#428bca, 20%);
 body
 {
   background-color: $backgroud-color;
+}
+.opacity-hover:hover
+{
+  opacity: 0.5;
 }
