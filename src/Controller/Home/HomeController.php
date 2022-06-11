@@ -11,7 +11,10 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
+        if (!$this->isGranted("IS_AUTHENTICATED_FULLY")) {
+            return $this->render('home/notLogged.html.twig');
+        }
+        return $this->render('home/logged.html.twig', [
         ]);
     }
 }
