@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Shop\Files;
 
 use App\Entity\AdminFile;

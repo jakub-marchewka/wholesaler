@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin\File;
 
 use App\Service\Admin\File\AdminFileDeleteService;
