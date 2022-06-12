@@ -5,6 +5,7 @@ namespace App\Service\Admin\File;
 use App\Entity\AdminFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Uid\Uuid;
 
 class AdminFileDeleteService
 {
@@ -12,7 +13,7 @@ class AdminFileDeleteService
     {
     }
 
-    public function delete(int $adminFileId, string $directory): bool
+    public function delete(string $adminFileId, string $directory): bool
     {
         $adminFile = $this->entityManager->getRepository(AdminFile::class)->findOneBy(['id' => $adminFileId]);
         if (!empty($adminFile)) {

@@ -1,11 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row justify-content-end">
-        <div class="col-3 text-end">
-            <a class="btn btn-dark" href="{{ path("app_admin_file_create") }}">Upload file</a>
-        </div>
-    </div>
     <div class="row">
         <div class="col-12">
             <table class="table">
@@ -21,7 +16,7 @@
                 {% if files is not empty %}
                     {% for file in files %}
                         <tr id="{{ file.id }}">
-                            <th scope="row">{{ file.id }}</th>
+                            <th scope="row"></th>
                             <td>{{ file.description }}</td>
                             <td>{{ file.createdAt | date("m/d/Y") }}</td>
                             <td>

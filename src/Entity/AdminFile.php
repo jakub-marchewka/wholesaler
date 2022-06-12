@@ -4,13 +4,15 @@ namespace App\Entity;
 
 use App\Repository\AdminFileRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: AdminFileRepository::class)]
 class AdminFile
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
     private $id;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
@@ -26,7 +28,7 @@ class AdminFile
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }
