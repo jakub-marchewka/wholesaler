@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Service\Admin\Command\AdminPrivilegesForUserService;
+use App\Service\Admin\Command\UserActivationService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,15 +12,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'app:set-admin',
-    description: 'Giving admin role for user',
+    name: 'app:user-activation',
+    description: 'Add a short description for your command',
 )]
-class SetAdminCommand extends Command
+class UserActivationCommand extends Command
 {
-    public function __construct(
-        private AdminPrivilegesForUserService $adminPrivilegesForUserService,
-        string $name = null
-    ) {
+    public function __construct(private UserActivationService $activationService, string $name = null)
+    {
         parent::__construct($name);
     }
 
@@ -33,17 +31,15 @@ class SetAdminCommand extends Command
         ;
     }
 
-    protected function execute(
-        InputInterface $input,
-        OutputInterface $output,
-    ): int {
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
         $output->writeln([
             'Nadawanie uprawnień administratora',
             '============',
             '',
         ]);
-        if ($this->adminPrivilegesForUserService->set($input->getArgument('email'))) {
-            $output->writeln('Admin privileges added for: '.$input->getArgument('email'));
+        if ($this->activationService->activate($input->getArgument('email'))) {
+            $output->writeln('User is now active: '.$input->getArgument('email'));
         } else {
             $output->writeln('User do not exists');
         }
