@@ -1,0 +1,30 @@
+{% extends './admin/base.html.twig' %}
+
+
+{% block body %}
+    <div class="row justify-content-end">
+        <div class="col-3 text-end">
+            <a class="btn btn-dark" href="{{ path("app_admin_vat_index") }}">Back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row justify-content-center mt-5">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.value, 'Value') }}
+                    {{ form_widget(form.value, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.value) }}
+                    </div>
+                </div>
+                {% if app.request.attributes.get('_route') == 'app_admin_vat_create' %}
+                    <button type="submit" class="btn btn-primary mt-3">Add vat</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary mt-3">Edit vat</button>
+                {% endif %}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

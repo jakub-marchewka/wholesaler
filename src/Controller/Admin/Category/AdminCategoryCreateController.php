@@ -26,7 +26,7 @@ class AdminCategoryCreateController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_admin_category_index');
         }
-        return $this->render("admin/category/create.html.twig", [
+        return $this->render("admin/category/createUpdate.html.twig", [
             'form' => $form->createView()
         ]);
     }

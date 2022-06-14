@@ -28,3 +28,5 @@ import './bootstrap';
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 import './js/admin/file.js';
+import './js/admin/category.js';
+import './js/admin/vat.js';

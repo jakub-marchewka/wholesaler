@@ -18,7 +18,11 @@
                         {{ form_errors(form.name) }}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Add category</button>
+                {% if app.request.attributes.get('_route') == 'app_admin_category_create' %}
+                    <button type="submit" class="btn btn-primary mt-3">Add category</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary mt-3">Edit category</button>
+                {% endif %}
                 {{ form_end(form) }}
             </div>
         </div>

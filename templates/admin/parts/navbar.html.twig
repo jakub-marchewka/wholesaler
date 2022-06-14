@@ -12,7 +12,10 @@
                             <a class="nav-link {% if app.request.attributes.get('_route') in ['app_admin_file_index', 'app_admin_file_create'] %}active{% endif %}" aria-current="page" href="{{ path("app_admin_file_index") }}">Files</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if app.request.attributes.get('_route') in ['app_admin_category_index', 'app_admin_category_create'] %}active{% endif %}" aria-current="page" href="{{ path("app_admin_category_index") }}">Categories</a>
+                            <a class="nav-link {% if app.request.attributes.get('_route') in ['app_admin_category_index', 'app_admin_category_create', 'app_admin_category_update'] %}active{% endif %}" aria-current="page" href="{{ path("app_admin_category_index") }}">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if app.request.attributes.get('_route') in ['app_admin_vat_index', 'app_admin_vat_create', 'app_admin_vat_update'] %}active{% endif %}" aria-current="page" href="{{ path("app_admin_vat_index") }}">Vat</a>
                         </li>
                     </ul>
                 </div>
