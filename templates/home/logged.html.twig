@@ -2,5 +2,9 @@
 
 
 {% block body %}
-    logged
+    <div class="row">
+        {% for product in products %}
+            {{ include('parts/productCard.html.twig') }}
+        {% endfor %}
+    </div>
 {% endblock %}

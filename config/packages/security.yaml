@@ -39,6 +39,8 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/files, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/product, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/subscriptions, roles: IS_AUTHENTICATED_FULLY }
 #         - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

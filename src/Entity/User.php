@@ -50,9 +50,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $active = false;
 
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'subscribers')]
+    private $subscribtions;
+
+
     public function __construct()
     {
         $this->address = new ArrayCollection();
+        $this->subscribtions = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -214,5 +219,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getSubscribtions(): Collection
+    {
+        return $this->subscribtions;
+    }
+
+    public function addSubscribtion(Product $subscribtion): self
+    {
+        if (!$this->subscribtions->contains($subscribtion)) {
+            $this->subscribtions[] = $subscribtion;
+            $subscribtion->addSubscriber($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubscribtion(Product $subscribtion): self
+    {
+        if ($this->subscribtions->removeElement($subscribtion)) {
+            $subscribtion->removeSubscriber($this);
+        }
+
+        return $this;
+    }
+
 
 }

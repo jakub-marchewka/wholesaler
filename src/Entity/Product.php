@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
@@ -38,6 +40,14 @@ class Product
 
     #[ORM\ManyToOne(targetEntity: ProductVat::class, inversedBy: 'products')]
     private $vat;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'subscribtions')]
+    private $subscribers;
+
+    public function __construct()
+    {
+        $this->subscribers = new ArrayCollection();
+    }
 
     public function getId(): ?Uuid
     {
@@ -139,4 +149,29 @@ class Product
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getSubscribers(): Collection
+    {
+        return $this->subscribers;
+    }
+
+    public function addSubscriber(User $subscriber): self
+    {
+        if (!$this->subscribers->contains($subscriber)) {
+            $this->subscribers[] = $subscriber;
+        }
+
+        return $this;
+    }
+
+    public function removeSubscriber(User $subscriber): self
+    {
+        $this->subscribers->removeElement($subscriber);
+
+        return $this;
+    }
+
 }

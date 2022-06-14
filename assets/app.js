@@ -31,3 +31,4 @@ import './js/admin/file.js';
 import './js/admin/category.js';
 import './js/admin/vat.js';
 import './js/admin/product.js';
+import './js/shop/subscribe.js';

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        {% if subscribedProducts is not empty %}
+            {% for product in subscribedProducts %}
+                {% include 'parts/productCard.html.twig' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <h2>You have no favorite products</h2>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+<div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-3 mb-4">
+    <div class="productCard p-2 bg-warning">
+        <div class="row justify-content-center">
+                <div class="col-11 productCardImage p-0 mr-0" style="background-image: url({{ asset('images/default_image_offer.jpg') }});">
+
+                </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-10 text-center ">
+                <a href="">
+                    {{ product.name }}
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-10 text-center ">
+                    {{ product.price }}
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-6 text-center">
+                <button class="btn btn-dark" productId="{{ product.id }}">
+                    Add to cart
+                </button>
+            </div>
+            <div class="col-6 text-end">
+                <button class="btn btn-dark subscribe-product subscribe-product-{{ product.id }}" productId="{{ product.id }}">
+                    {% if app.user in product.subscribers %}
+                        <i class="fa-solid fa-heart"></i>
+                    {% else %}
+                        <i class="fa-regular fa-heart"></i>
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
