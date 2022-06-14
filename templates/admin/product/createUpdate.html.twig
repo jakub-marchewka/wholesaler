@@ -19,6 +19,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    {{ form_label(form.slug, 'Slug') }}
+                    {{ form_widget(form.slug, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.slug) }}
+                    </div>
+                </div>
+                <div class="form-group">
                     {{ form_label(form.price, 'Price') }}
                     {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
                     <div class="row mt-3 form-error-wraper">

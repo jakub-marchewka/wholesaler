@@ -6,9 +6,11 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[UniqueEntity(fields: ['slug'])]
 class Product
 {
     #[ORM\Id]
@@ -43,6 +45,9 @@ class Product
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'subscribtions')]
     private $subscribers;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $slug;
 
     public function __construct()
     {
@@ -170,6 +175,18 @@ class Product
     public function removeSubscriber(User $subscriber): self
     {
         $this->subscribers->removeElement($subscriber);
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

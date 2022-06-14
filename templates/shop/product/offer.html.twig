@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 justify-content-center">
+            <div class="col-12 product-offer-image p-0 mr-0" style="background-image: url({{ asset('images/default_image_offer.jpg') }});">
+
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="row">
+                <div class="col-12 text-center">
+                    {{ product.name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mt-3">
+                    {{ product.price }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mt-3">
+                    <button class="btn btn-dark" productId="{{ product.id }}">Add to cart</button>
+                </div>
+            </div>
+            <div class="row self">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2>comments</h2>
+    </div>
+    <div class="row">
+        <h2>question</h2>
+    </div>
+{% endblock %}
