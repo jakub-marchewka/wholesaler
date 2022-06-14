@@ -1,0 +1,79 @@
+{% extends './admin/base.html.twig' %}
+
+
+{% block body %}
+    <div class="row justify-content-end">
+        <div class="col-3 text-end">
+            <a class="btn btn-dark" href="{{ path("app_admin_product_index") }}">Back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row justify-content-center mt-5">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.name, 'Name') }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.name) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.price, 'Price') }}
+                    {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.price) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.priceOld, 'Old price') }}
+                    {{ form_widget(form.priceOld, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.priceOld) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.stock, 'Stock') }}
+                    {{ form_widget(form.stock, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.stock) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.weight, 'Weight') }}
+                    {{ form_widget(form.weight, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.weight) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.category, 'Category') }}
+                    {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.category) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.vat, 'Vat') }}
+                    {{ form_widget(form.vat, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.vat) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.active, 'Active') }}
+                    {{ form_widget(form.active, {'attr': {'class': 'form-check-input'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.active) }}
+                    </div>
+                </div>
+                {% if app.request.attributes.get('_route') == 'app_admin_product_create' %}
+                    <button type="submit" class="btn btn-primary mt-3">Add product</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary mt-3">Edit product</button>
+                {% endif %}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
