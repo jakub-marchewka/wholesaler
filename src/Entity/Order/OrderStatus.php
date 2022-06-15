@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Order;
 
-use App\Entity\Order\Order;
-use App\Repository\DeliveryRepository;
+use App\Repository\OrderStatusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: DeliveryRepository::class)]
-class Delivery
+#[ORM\Entity(repositoryClass: OrderStatusRepository::class)]
+class OrderStatus
 {
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
@@ -21,16 +20,7 @@ class Delivery
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'integer')]
-    private $price;
-
-    #[ORM\Column(type: 'integer')]
-    private $weightMin;
-
-    #[ORM\Column(type: 'integer')]
-    private $weightMax;
-
-    #[ORM\OneToMany(mappedBy: 'delivery', targetEntity: Order::class)]
+    #[ORM\OneToMany(mappedBy: 'status', targetEntity: Order::class)]
     private $orders;
 
     public function __construct()
@@ -55,42 +45,6 @@ class Delivery
         return $this;
     }
 
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getWeightMin(): ?int
-    {
-        return $this->weightMin;
-    }
-
-    public function setWeightMin(int $weightMin): self
-    {
-        $this->weightMin = $weightMin;
-
-        return $this;
-    }
-
-    public function getWeightMax(): ?int
-    {
-        return $this->weightMax;
-    }
-
-    public function setWeightMax(int $weightMax): self
-    {
-        $this->weightMax = $weightMax;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Order>
      */
@@ -103,7 +57,7 @@ class Delivery
     {
         if (!$this->orders->contains($order)) {
             $this->orders[] = $order;
-            $order->setDelivery($this);
+            $order->setStatus($this);
         }
 
         return $this;
@@ -113,8 +67,8 @@ class Delivery
     {
         if ($this->orders->removeElement($order)) {
             // set the owning side to null (unless already changed)
-            if ($order->getDelivery() === $this) {
-                $order->setDelivery(null);
+            if ($order->getStatus() === $this) {
+                $order->setStatus(null);
             }
         }
 

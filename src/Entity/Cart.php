@@ -75,4 +75,14 @@ class Cart
 
         return $this;
     }
+
+    public function getCartSum()
+    {
+        $sum = 0;
+        $cartProducts = $this->getCartProducts();
+        foreach ($cartProducts as $cartProduct) {
+            $sum = $sum + $cartProduct->getProduct()->getPrice() * $cartProduct->getQuantity();
+        }
+        return $sum;
+    }
 }

@@ -21,6 +21,21 @@
                                 <a class="nav-link {% if app.request.attributes.get('_route') == 'app_shop_subscriptions_index' %}active{% endif %}" aria-current="page" href="{{ path("app_shop_subscriptions_index") }}">Subscriptions</a>
                             </li>
                         </ul>
+                        <span class="navbar-text">
+                            <a
+                                    class=
+                                    "
+                                            nav-link
+                                            {% if app.request.attributes.get('_route') == 'app_cart_index' %}
+                                            active
+                                            {% endif %}
+                                        "
+                                    aria-current="page"
+                                    href="{{ path("app_cart_index") }}"
+                            >
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                        </span>
                     </div>
                 </div>
             {% else %}
