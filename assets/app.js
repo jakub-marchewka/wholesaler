@@ -27,8 +27,12 @@ import './styles/app.scss';
 import './bootstrap';
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
+
 import './js/admin/file.js';
 import './js/admin/category.js';
 import './js/admin/vat.js';
 import './js/admin/product.js';
+import './js/admin/delivery.js';
+
 import './js/shop/subscribe.js';
+import './js/shop/cartAdd.js';

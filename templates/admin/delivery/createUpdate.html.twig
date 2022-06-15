@@ -1,0 +1,51 @@
+{% extends './admin/base.html.twig' %}
+
+
+{% block body %}
+    <div class="row justify-content-end">
+        <div class="col-3 text-end">
+            <a class="btn btn-dark" href="{{ path("app_admin_delivery_index") }}">Back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row justify-content-center mt-5">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.name, 'Name') }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.name) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.price, 'Price') }}
+                    {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.price) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.weightMin, 'Weight Min (g)') }}
+                    {{ form_widget(form.weightMin, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.weightMin) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.weightMax, 'Weight Max (g)') }}
+                    {{ form_widget(form.weightMax, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.weightMax) }}
+                    </div>
+                </div>
+                {% if app.request.attributes.get('_route') == 'app_admin_delivery_create' %}
+                    <button type="submit" class="btn btn-primary mt-3">Add delivery</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary mt-3">Edit delivery</button>
+                {% endif %}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

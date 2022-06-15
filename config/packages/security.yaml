@@ -41,6 +41,8 @@ security:
          - { path: ^/files, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/product, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/subscriptions, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/subscribe, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/cart, roles: IS_AUTHENTICATED_FULLY }
 #         - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

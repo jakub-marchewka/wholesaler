@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductSubscriptionController extends AbstractController
 {
-    #[Route('/product/subscribe', name: 'app_shop_subscribed_subscribe')]
+    #[Route('/subscribe/product', name: 'app_shop_subscribed_subscribe')]
     public function __invoke(Request $request, SubscribtionSubscribeService $subscribeService): JsonResponse
     {
         $productId = $request->get('productId');

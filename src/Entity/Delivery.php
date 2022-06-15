@@ -4,13 +4,15 @@ namespace App\Entity;
 
 use App\Repository\DeliveryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: DeliveryRepository::class)]
 class Delivery
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -25,7 +27,7 @@ class Delivery
     #[ORM\Column(type: 'integer')]
     private $weightMax;
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }

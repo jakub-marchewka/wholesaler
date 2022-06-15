@@ -3,8 +3,9 @@ $(document).ready(function () {
         let productId = $(this).attr('productId');
 
         $.ajax({
-            url: "/product/subscribe",
-            data: {'productId': productId},
+            url: "/subscribe/product",
+            data: {'productId' : productId},
+            method: 'post',
             success: function (data) {
                 if (data === "good") {
                     $(`.subscribe-product-${productId}`).html('<i class="fa-solid fa-heart"></i>');
