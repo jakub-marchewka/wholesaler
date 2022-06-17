@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h2>ORDER DETAILS</h2>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="row">
+                <h5>Address</h5>
+            </div>
+            <div class="row">
+                {{ order.street }} {{ order.buildingNumber }}
+            </div>
+            <div class="row">
+                {{ order.city }} {{ order.postCode }}
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <h5>Data</h5>
+            </div>
+            <div class="row">
+{#                {{ order.firstname }} {{ order.surname }}#}
+            </div>
+            <div class="row">
+                {{ order.companyName }}
+            </div>
+            <div class="row">
+                {{ order.nip }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Products:</h3>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for productOrder in order.orderProducts %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ productOrder.product.name }}</td>
+                    <td>{{ productOrder.quantity }}</td>
+                    <td>{{ productOrder.product.price }}</td>
+                    <td>{{ displayPrice(productOrder.product.price * productOrder.quantity) }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+        </div>
+    </div>
+{% endblock %}

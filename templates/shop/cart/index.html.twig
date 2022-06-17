@@ -28,10 +28,10 @@
                                         {{ cartProduct.quantity }}
                                     </td>
                                     <td>
-                                        {{ cartProduct.product.price }}
+                                        {{ displayPrice(cartProduct.product.price) }}
                                     </td>
                                     <td>
-                                        {{ cartProduct.product.price * cartProduct.quantity }}
+                                        {{ displayPrice(cartProduct.product.price * cartProduct.quantity) }}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -53,11 +53,11 @@
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
             <div class="row">
                 <div class="col-12 text-end">
-                    <strong>Sum: {{ app.user.cart.cartSum }}</strong>
+                    <strong>Sum: {{ displayPrice(app.user.cart.cartSum) }}</strong>
                 </div>
             </div>
             <div class="row">
-                <a class="btn btn-dark" href="">
+                <a class="btn btn-dark" href="{{ path('app_order_set_details') }}">
                     Set Details
                 </a>
             </div>

@@ -41,8 +41,32 @@ class Order
     #[ORM\OneToMany(mappedBy: 'orderEntity', targetEntity: OrderProduct::class, orphanRemoval: true)]
     private $orderProducts;
 
-    #[ORM\OneToOne(mappedBy: 'orderEntity', targetEntity: OrderAddress::class, cascade: ['persist', 'remove'])]
-    private $orderAddress;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $email;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $phone;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nip;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $companyName;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $street;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $city;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $buildingNumber;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $localNumber;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $postCode;
 
     public function __construct()
     {
@@ -163,20 +187,112 @@ class Order
         return $this;
     }
 
-    public function getOrderAddress(): ?OrderAddress
+    public function getEmail(): ?string
     {
-        return $this->orderAddress;
+        return $this->email;
     }
 
-    public function setOrderAddress(OrderAddress $orderAddress): self
+    public function setEmail(string $email): self
     {
-        // set the owning side of the relation if necessary
-        if ($orderAddress->getOrderEntity() !== $this) {
-            $orderAddress->setOrderEntity($this);
-        }
-
-        $this->orderAddress = $orderAddress;
+        $this->email = $email;
 
         return $this;
     }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getNip(): ?string
+    {
+        return $this->nip;
+    }
+
+    public function setNip(string $nip): self
+    {
+        $this->nip = $nip;
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+
+    public function setCompanyName(string $companyName): self
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(string $street): self
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getBuildingNumber(): ?string
+    {
+        return $this->buildingNumber;
+    }
+
+    public function setBuildingNumber(string $buildingNumber): self
+    {
+        $this->buildingNumber = $buildingNumber;
+
+        return $this;
+    }
+
+    public function getLocalNumber(): ?string
+    {
+        return $this->localNumber;
+    }
+
+    public function setLocalNumber(?string $localNumber): self
+    {
+        $this->localNumber = $localNumber;
+
+        return $this;
+    }
+
+    public function getPostCode(): ?string
+    {
+        return $this->postCode;
+    }
+
+    public function setPostCode(string $postCode): self
+    {
+        $this->postCode = $postCode;
+
+        return $this;
+    }
+
 }
