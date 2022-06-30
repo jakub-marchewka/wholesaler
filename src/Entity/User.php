@@ -60,12 +60,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private $orders;
 
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: ProductComment::class, orphanRemoval: true)]
+    private $productComments;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductQuestion::class, orphanRemoval: true)]
+    private $productQuestions;
+
 
     public function __construct()
     {
         $this->address = new ArrayCollection();
         $this->subscribtions = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->productComments = new ArrayCollection();
+        $this->productQuestions = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -296,6 +304,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($order->getUser() === $this) {
                 $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductComment>
+     */
+    public function getProductComments(): Collection
+    {
+        return $this->productComments;
+    }
+
+    public function addProductComment(ProductComment $productComment): self
+    {
+        if (!$this->productComments->contains($productComment)) {
+            $this->productComments[] = $productComment;
+            $productComment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductComment(ProductComment $productComment): self
+    {
+        if ($this->productComments->removeElement($productComment)) {
+            // set the owning side to null (unless already changed)
+            if ($productComment->getUser() === $this) {
+                $productComment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductQuestion>
+     */
+    public function getProductQuestions(): Collection
+    {
+        return $this->productQuestions;
+    }
+
+    public function addProductQuestion(ProductQuestion $productQuestion): self
+    {
+        if (!$this->productQuestions->contains($productQuestion)) {
+            $this->productQuestions[] = $productQuestion;
+            $productQuestion->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductQuestion(ProductQuestion $productQuestion): self
+    {
+        if ($this->productQuestions->removeElement($productQuestion)) {
+            // set the owning side to null (unless already changed)
+            if ($productQuestion->getUser() === $this) {
+                $productQuestion->setUser(null);
             }
         }
 

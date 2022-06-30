@@ -49,9 +49,13 @@ class Product
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
+    #[ORM\OneToMany(mappedBy: 'Product', targetEntity: ProductComment::class, orphanRemoval: true)]
+    private $productComments;
+
     public function __construct()
     {
         $this->subscribers = new ArrayCollection();
+        $this->productComments = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -187,6 +191,36 @@ class Product
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductComment>
+     */
+    public function getProductComments(): Collection
+    {
+        return $this->productComments;
+    }
+
+    public function addProductComment(ProductComment $productComment): self
+    {
+        if (!$this->productComments->contains($productComment)) {
+            $this->productComments[] = $productComment;
+            $productComment->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductComment(ProductComment $productComment): self
+    {
+        if ($this->productComments->removeElement($productComment)) {
+            // set the owning side to null (unless already changed)
+            if ($productComment->getProduct() === $this) {
+                $productComment->setProduct(null);
+            }
+        }
 
         return $this;
     }
