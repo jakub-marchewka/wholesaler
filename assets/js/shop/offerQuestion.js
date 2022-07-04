@@ -3,13 +3,15 @@ $(document).ready(function () {
         event.preventDefault();
         let form = $(this).serialize();
         console.log(form);
-        let test = ['test'];
+        let productId = $('.offer-add-to-cart').attr('productId');
         $.ajax({
             url: "/question/product",
-            data: form + '&' + 'test=test2',
+            data: form + '&' + 'productId='+productId,
             method: 'post',
             success: function (data) {
-                alert(data);
+                if (data === 'good') {
+                    $('.product-question-form-wrapp').html('<h3>Message has been sended</h3>');
+                }
             },
             error: function () {
 
