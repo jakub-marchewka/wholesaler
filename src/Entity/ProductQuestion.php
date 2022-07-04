@@ -28,7 +28,7 @@ class ProductQuestion
     private $response;
 
     #[ORM\Column(type: 'boolean')]
-    private $answered;
+    private $answered = false;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
@@ -36,6 +36,10 @@ class ProductQuestion
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $answeredAt;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
     public function getId(): ?int
     {
         return $this->id;
