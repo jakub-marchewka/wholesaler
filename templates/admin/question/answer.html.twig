@@ -1,0 +1,33 @@
+{% extends './admin/base.html.twig' %}
+
+
+{% block body %}
+    <div class="row justify-content-end">
+        <div class="col-3 text-end">
+            <a class="btn btn-dark" href="{{ path("app_admin_product_question_index") }}">Back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row justify-content-center mt-5">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.question, 'Question') }}
+                    {{ form_widget(form.question, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.question) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.response, 'Answer') }}
+                    {{ form_widget(form.response, {'attr': {'class': 'form-control'}}) }}
+                    <div class="row mt-3 form-error-wraper">
+                        {{ form_errors(form.response) }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Answer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

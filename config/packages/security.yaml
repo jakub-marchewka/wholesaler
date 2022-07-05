@@ -43,6 +43,7 @@ security:
          - { path: ^/subscriptions, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/subscribe, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/cart, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/user, roles: IS_AUTHENTICATED_FULLY }
 #         - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

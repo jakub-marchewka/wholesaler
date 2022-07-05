@@ -37,3 +37,5 @@ import './js/admin/delivery.js';
 import './js/shop/subscribe.js';
 import './js/shop/cartAdd.js';
 require('./js/shop/offerQuestion');
+
+require('./js/user/changePassword.js');
