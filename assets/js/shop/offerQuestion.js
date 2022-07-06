@@ -2,7 +2,6 @@ $(document).ready(function () {
     $('.product-question-form').submit(function (event) {
         event.preventDefault();
         let form = $(this).serialize();
-        console.log(form);
         let productId = $('.offer-add-to-cart').attr('productId');
         $.ajax({
             url: "/question/product",

@@ -1,9 +1,19 @@
 $(document).ready(function () {
     $('.user-setting-change-password-button').click(function () {
-        let form;
-        if ( $('.user-setting-change-password-form').length > 0) {
-            let form = $('.user-setting-change-password-form').serialize();
-        }
+        formGenerate();
+    });
+    function formOnSubmit()
+    {
+        $('.user-setting-change-password-form').submit(function (event) {
+            event.preventDefault();
+            let form = $(this).serialize();
+            formGenerate(form);
+        });
+    }
+    function formGenerate(form = null)
+    {
+
+        console.log(form);
         $.ajax({
             url: "/user/password/change",
             data: form,
@@ -11,20 +21,14 @@ $(document).ready(function () {
             success: function (data) {
                 if (data === 'good') {
                     $('.user-setting-wrapp').html('<h3>Password has been changed.</h3>');
-                    formOnSubmit();
                 } else {
                     $('.user-setting-wrapp').html(data);
+                    formOnSubmit();
                 }
             },
             error: function () {
 
             }
-        });
-    });
-    function formOnSubmit()
-    {
-        $('.user-setting-change-password-form').onsubmit(function () {
-            
         });
     }
 });
