@@ -7,8 +7,10 @@ namespace App\Entity;
 
 class Response
 {
-    public function __construct(private bool $success, private string $message)
-    {
+    public function __construct(
+        private bool $success,
+        private string $message
+    ) {
     }
 
     /**

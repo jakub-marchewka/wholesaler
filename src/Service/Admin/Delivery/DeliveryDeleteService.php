@@ -14,6 +14,10 @@ class DeliveryDeleteService
     {
     }
 
+    /**
+     * @param string $deliveryId
+     * @return bool
+     */
     public function delete(string $deliveryId): bool
     {
         $delivery = $this->entityManager->getRepository(Delivery::class)->findOneBy(['id' => $deliveryId]);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Order;
 
 use App\Repository\OrderStatusRepository;
@@ -15,13 +17,13 @@ class OrderStatus
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private ?string $name;
 
     #[ORM\OneToMany(mappedBy: 'status', targetEntity: Order::class)]
-    private $orders;
+    private ArrayCollection $orders;
 
     public function __construct()
     {

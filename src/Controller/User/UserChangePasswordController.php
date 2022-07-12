@@ -17,6 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserChangePasswordController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param UserChangePasswordService $changePasswordService
+     * @return JsonResponse|Response
+     */
     #[Route('/user/password/change', name: 'app_user_password_change')]
     public function __invoke(Request $request, UserChangePasswordService $changePasswordService): JsonResponse|Response
     {

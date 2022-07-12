@@ -14,6 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminCategoryCreateController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/admin/category/create', name: 'app_admin_category_create')]
     public function __invoke(Request $request, EntityManagerInterface $entityManager): Response
     {

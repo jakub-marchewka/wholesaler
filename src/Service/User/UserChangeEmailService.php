@@ -18,6 +18,11 @@ class UserChangeEmailService
     ) {
     }
 
+    /**
+     * @param FormInterface $form
+     * @param User $user
+     * @return bool
+     */
     public function change(FormInterface $form, User $user): bool
     {
         if ($this->passwordHasher->isPasswordValid($user, $form->get('password')->getData())) {

@@ -15,6 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminVatUpdateController extends AbstractController
 {
+    /**
+     * @param string $vatId
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
     #[Route('/admin/vat/update/{vatId}', name: 'app_admin_vat_update')]
     public function __invoke(
         string $vatId,

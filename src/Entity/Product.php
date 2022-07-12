@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
@@ -17,40 +19,40 @@ class Product
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private ?string $name;
 
     #[ORM\ManyToOne(targetEntity: ProductCategory::class, inversedBy: 'products')]
-    private $category;
+    private ?ProductCategory $category;
 
     #[ORM\Column(type: 'integer')]
-    private $price;
+    private ?int $price;
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    private $priceOld;
+    private ?int $priceOld;
 
     #[ORM\Column(type: 'integer')]
-    private $stock;
+    private ?int $stock;
 
     #[ORM\Column(type: 'integer')]
-    private $weight;
+    private ?int $weight;
 
     #[ORM\Column(type: 'boolean')]
-    private $active;
+    private bool $active;
 
     #[ORM\ManyToOne(targetEntity: ProductVat::class, inversedBy: 'products')]
-    private $vat;
+    private ?ProductVat $vat;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'subscribtions')]
-    private $subscribers;
+    private ArrayCollection $subscribers;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $slug;
+    private ?string $slug;
 
     #[ORM\OneToMany(mappedBy: 'Product', targetEntity: ProductComment::class, orphanRemoval: true)]
-    private $productComments;
+    private ArrayCollection $productComments;
 
     public function __construct()
     {

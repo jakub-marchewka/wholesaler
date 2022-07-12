@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminDeliveryIndexController extends AbstractController
 {
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/admin/delivery', name: 'app_admin_delivery_index')]
     public function __invoke(EntityManagerInterface $entityManager): Response
     {

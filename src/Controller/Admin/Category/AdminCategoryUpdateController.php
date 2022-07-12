@@ -15,6 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminCategoryUpdateController extends AbstractController
 {
+    /**
+     * @param string $categoryId
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
     #[Route('/admin/category/update/{categoryId}', name: 'app_admin_category_update')]
     public function __invoke(
         string $categoryId,

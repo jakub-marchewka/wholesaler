@@ -15,8 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductQuestionController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param ProductQuestionCreateService $productQuestionCreateService
+     * @return JsonResponse
+     */
     #[Route('/question/product', name: 'app_product_question')]
-    public function __invoke(Request $request, ProductQuestionCreateService $productQuestionCreateService)
+    public function __invoke(Request $request, ProductQuestionCreateService $productQuestionCreateService): JsonResponse
     {
         $productQuestion = new ProductQuestion();
         $form = $this->createForm(ProductQuestionType::class, $productQuestion)->handleRequest($request);

@@ -16,6 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminDeliveryCreateController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse|Response
+     */
     #[Route('/admin/delivery/create', name: 'app_admin_delivery_create')]
     public function __invoke(Request $request, EntityManagerInterface $entityManager): RedirectResponse|Response
     {

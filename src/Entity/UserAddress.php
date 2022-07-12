@@ -15,26 +15,26 @@ class UserAddress
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $street;
+    private ?string $street;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $buildingNumber;
+    private ?string $buildingNumber;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $localNumber;
+    private ?string $localNumber;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $city;
+    private ?string $city;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $postCode;
+    private ?string $postCode;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'address')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     public function getId(): ?Uuid
     {

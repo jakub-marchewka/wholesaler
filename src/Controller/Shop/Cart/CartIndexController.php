@@ -11,6 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartIndexController extends AbstractController
 {
+    /**
+     * @return Response
+     */
     #[Route('/cart', name: 'app_cart_index')]
     public function __invoke(): Response
     {

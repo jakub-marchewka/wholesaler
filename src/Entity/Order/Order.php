@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Order;
 
 use App\Entity\Delivery;
@@ -18,55 +20,55 @@ class Order
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     #[ORM\ManyToOne(targetEntity: Delivery::class, inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: true)]
-    private $delivery;
+    private ?Delivery $delivery;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(targetEntity: OrderStatus::class, inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: true)]
-    private $status;
+    private ?OrderStatus $status;
 
     #[ORM\OneToMany(mappedBy: 'orderEntity', targetEntity: OrderStatusLog::class, orphanRemoval: true)]
-    private $orderStatusLogs;
+    private ArrayCollection $orderStatusLogs;
 
     #[ORM\OneToMany(mappedBy: 'orderEntity', targetEntity: OrderProduct::class, orphanRemoval: true)]
-    private $orderProducts;
+    private ArrayCollection $orderProducts;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $email;
+    private ?string $email;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $phone;
+    private ?string $phone;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nip;
+    private ?string $nip;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $companyName;
+    private ?string $companyName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $street;
+    private ?string $street;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $city;
+    private ?string $city;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $buildingNumber;
+    private ?string $buildingNumber;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $localNumber;
+    private ?string $localNumber;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $postCode;
+    private ?string $postCode;
 
     public function __construct()
     {

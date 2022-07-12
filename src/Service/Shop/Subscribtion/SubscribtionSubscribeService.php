@@ -16,6 +16,11 @@ class SubscribtionSubscribeService
     {
     }
 
+    /**
+     * @param string $productId
+     * @param User $user
+     * @return bool
+     */
     public function subscribe(string $productId, User $user): bool
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $productId]);

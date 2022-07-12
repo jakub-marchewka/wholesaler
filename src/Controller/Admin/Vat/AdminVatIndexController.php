@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminVatIndexController extends AbstractController
 {
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/admin/vat', name: 'app_admin_vat_index')]
     public function __invoke(EntityManagerInterface $entityManager): Response
     {

@@ -15,6 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrderDetailsIndexController extends AbstractController
 {
 
+    /**
+     * @param string $orderId
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse|Response
+     */
     #[Route('/order/show/details/{orderId}', name: 'app_order_show_details')]
     public function __invoke(string $orderId, EntityManagerInterface $entityManager): RedirectResponse|Response
     {

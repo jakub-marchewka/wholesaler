@@ -13,6 +13,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class OrderCreateService
 {
+    /**
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(private EntityManagerInterface $entityManager)
     {
     }

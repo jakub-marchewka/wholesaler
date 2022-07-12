@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductSubscriptionController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param SubscribtionSubscribeService $subscribeService
+     * @return JsonResponse
+     */
     #[Route('/subscribe/product', name: 'app_shop_subscribed_subscribe')]
     public function __invoke(Request $request, SubscribtionSubscribeService $subscribeService): JsonResponse
     {

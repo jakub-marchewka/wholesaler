@@ -16,6 +16,12 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminFileCreateController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param SluggerInterface $slugger
+     * @param AdminFileUploadService $adminFileUploadService
+     * @return Response
+     */
     #[Route('/admin/file/create', name: 'app_admin_file_create')]
     public function __invoke(
         Request $request,

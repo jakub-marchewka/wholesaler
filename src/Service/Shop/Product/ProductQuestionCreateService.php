@@ -18,7 +18,12 @@ class ProductQuestionCreateService
     ) {
     }
 
-    public function create(ProductQuestion $productQuestion, string $productId)
+    /**
+     * @param ProductQuestion $productQuestion
+     * @param string $productId
+     * @return bool
+     */
+    public function create(ProductQuestion $productQuestion, string $productId): bool
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $productId]);
         if (empty($product)) {

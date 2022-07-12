@@ -12,6 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductSubscriptionIndexController extends AbstractController
 {
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/subscriptions', name: 'app_shop_subscriptions_index')]
     public function __invoke(EntityManagerInterface $entityManager): Response
     {

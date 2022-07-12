@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class FileDownloadController extends AbstractController
 {
 
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/files', name: 'app_shop_files')]
     public function __invoke(EntityManagerInterface $entityManager): Response
     {

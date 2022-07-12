@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserQuestionsController extends AbstractController
 {
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/user/questions', name: 'app_user_questions')]
     public function __invoke(EntityManagerInterface $entityManager): Response
     {

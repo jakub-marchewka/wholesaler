@@ -14,6 +14,10 @@ class ProductVatDeleteService
     {
     }
 
+    /**
+     * @param string $vatId
+     * @return bool
+     */
     public function delete(string $vatId): bool
     {
         $vat = $this->entityManager->getRepository(ProductVat::class)->findOneBy(['id' => $vatId]);

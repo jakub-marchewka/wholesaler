@@ -14,6 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartProductAddController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param CartProductAddService $cartProductAddService
+     * @return JsonResponse
+     */
     #[Route('/cart/add', name: 'app_cart_add')]
     public function __invoke(Request $request, CartProductAddService $cartProductAddService): JsonResponse
     {

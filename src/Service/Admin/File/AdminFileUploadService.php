@@ -19,6 +19,13 @@ class AdminFileUploadService
     ) {
     }
 
+    /**
+     * @param $form
+     * @param string $pathToUploadDirectory
+     * @param AdminFile $adminFile
+     * @param User $user
+     * @return bool
+     */
     public function upload($form, string $pathToUploadDirectory, AdminFile $adminFile, User $user): bool
     {
         $file = $form->get('fileName')->getData();

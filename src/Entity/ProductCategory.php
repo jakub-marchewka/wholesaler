@@ -17,13 +17,13 @@ class ProductCategory
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private ?string $name;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
-    private $products;
+    private ArrayCollection $products;
 
     public function __construct()
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\ProductQuestionRepository;
@@ -11,30 +13,30 @@ class ProductQuestion
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\ManyToOne(targetEntity: Product::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $product;
+    private ?Product $product;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'productQuestions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $question;
+    private ?string $question;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $response;
+    private ?string $response;
 
     #[ORM\Column(type: 'boolean')]
-    private $answered = false;
+    private bool $answered = false;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private $answeredAt;
+    private ?\DateTimeImmutable $answeredAt;
 
     public function __construct()
     {

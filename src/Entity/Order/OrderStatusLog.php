@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Order;
 
 use App\Entity\User;
@@ -13,25 +15,25 @@ class OrderStatusLog
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?int $id;
 
     #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'orderStatusLogs')]
     #[ORM\JoinColumn(nullable: false)]
-    private $orderEntity;
+    private ?Order $orderEntity;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $message;
+    private ?string $message;
 
     #[ORM\ManyToOne(targetEntity: OrderStatus::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $orderStatus;
+    private ?OrderStatus $orderStatus;
 
     public function getId(): ?int
     {

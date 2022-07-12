@@ -4,33 +4,35 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\ProductCommentRepository;
+use App\Repository\ProductRecommendedRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: ProductCommentRepository::class)]
-class ProductComment
+#[ORM\Entity(repositoryClass: ProductRecommendedRepository::class)]
+class ProductRecommended
 {
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private ?int $id;
+    private ?Uuid $id;
 
-    #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'productComments')]
+    #[ORM\ManyToOne(targetEntity: Product::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'productComments')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user;
-
-    #[ORM\Column(type: 'boolean')]
-    private bool $active;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $type;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $createdAt;
+    private \DateTimeImmutable $createdAt;
 
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    public function getId(): ?Uuid
     {
         return $this->id;
     }
@@ -47,26 +49,14 @@ class ProductComment
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getType(): ?string
     {
-        return $this->user;
+        return $this->type;
     }
 
-    public function setUser(?User $user): self
+    public function setType(string $type): self
     {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function isActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
+        $this->type = $type;
 
         return $this;
     }

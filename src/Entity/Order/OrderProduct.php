@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Order;
 
 use App\Entity\Product;
@@ -14,18 +16,18 @@ class OrderProduct
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'orderProducts')]
     #[ORM\JoinColumn(nullable: false)]
-    private $orderEntity;
+    private ?Order $orderEntity;
 
     #[ORM\ManyToOne(targetEntity: Product::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $product;
+    private ?Product $product;
 
     #[ORM\Column(type: 'integer')]
-    private $quantity;
+    private ?int $quantity;
 
     public function getId(): ?Uuid
     {

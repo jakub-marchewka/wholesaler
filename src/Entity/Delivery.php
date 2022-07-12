@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Entity\Order\Order;
@@ -16,22 +18,22 @@ class Delivery
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private ?string $name;
 
     #[ORM\Column(type: 'integer')]
-    private $price;
+    private ?int $price;
 
     #[ORM\Column(type: 'integer')]
-    private $weightMin;
+    private ?int $weightMin;
 
     #[ORM\Column(type: 'integer')]
-    private $weightMax;
+    private ?int $weightMax;
 
     #[ORM\OneToMany(mappedBy: 'delivery', targetEntity: Order::class)]
-    private $orders;
+    private ArrayCollection $orders;
 
     public function __construct()
     {

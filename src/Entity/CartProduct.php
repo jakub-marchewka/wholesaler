@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\CartProductRepository;
@@ -13,18 +15,18 @@ class CartProduct
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\ManyToOne(targetEntity: Product::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $product;
+    private ?Product $product;
 
     #[ORM\Column(type: 'integer')]
-    private $quantity;
+    private ?int $quantity;
 
     #[ORM\ManyToOne(targetEntity: Cart::class, inversedBy: 'cartProducts')]
     #[ORM\JoinColumn(nullable: false)]
-    private $cart;
+    private ?Cart $cart;
 
     public function getId(): ?Uuid
     {

@@ -15,6 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminVatCreateController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse|Response
+     */
     #[Route('/admin/vat/create', name: 'app_admin_vat_create')]
     public function __invoke(Request $request, EntityManagerInterface $entityManager): RedirectResponse|Response
     {

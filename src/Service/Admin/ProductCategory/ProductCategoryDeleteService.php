@@ -14,6 +14,10 @@ class ProductCategoryDeleteService
     {
     }
 
+    /**
+     * @param string $id
+     * @return bool
+     */
     public function delete(string $id): bool
     {
         $category = $this->entityManager->getRepository(ProductCategory::class)->findOneBy(['id' => $id]);

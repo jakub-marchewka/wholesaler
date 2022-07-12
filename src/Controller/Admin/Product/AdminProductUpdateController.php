@@ -16,6 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminProductUpdateController extends AbstractController
 {
+    /**
+     * @param string $productId
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse|Response
+     */
     #[Route('/admin/product/update/{productId}', name: 'app_admin_product_update')]
     public function __invoke(
         string $productId,

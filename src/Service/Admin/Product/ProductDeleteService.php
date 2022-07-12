@@ -14,6 +14,10 @@ class ProductDeleteService
     {
     }
 
+    /**
+     * @param string $productId
+     * @return bool
+     */
     public function delete(string $productId): bool
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $productId]);

@@ -17,13 +17,13 @@ class ProductVat
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\Column(type: 'integer')]
-    private $value;
+    private ?int $value;
 
     #[ORM\OneToMany(mappedBy: 'vat', targetEntity: Product::class)]
-    private $products;
+    private ArrayCollection $products;
 
     public function __construct()
     {

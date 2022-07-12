@@ -15,20 +15,25 @@ class AdminFile
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $description;
+    private ?string $description;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $fileName;
+    private ?string $fileName;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    private ?\DateTimeImmutable $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?Uuid
     {

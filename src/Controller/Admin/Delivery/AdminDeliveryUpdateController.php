@@ -16,6 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminDeliveryUpdateController extends AbstractController
 {
+    /**
+     * @param string $deliveryId
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse|Response
+     */
     #[Route('/admin/delivery/update/{deliveryId}', name: 'app_admin_delivery_update')]
     public function __invoke(
         string $deliveryId,

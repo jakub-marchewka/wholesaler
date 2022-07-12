@@ -12,6 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminCategoryDeleteController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param ProductCategoryDeleteService $deleteService
+     * @return JsonResponse
+     */
     #[Route('/admin/category/delete', name: 'app_admin_category_delete')]
     public function __invoke(Request $request, ProductCategoryDeleteService $deleteService): JsonResponse
     {

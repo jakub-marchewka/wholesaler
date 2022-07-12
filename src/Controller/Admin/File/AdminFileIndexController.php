@@ -12,6 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminFileIndexController extends AbstractController
 {
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/admin/file', name: 'app_admin_file_index')]
     public function index(EntityManagerInterface $entityManager): Response
     {

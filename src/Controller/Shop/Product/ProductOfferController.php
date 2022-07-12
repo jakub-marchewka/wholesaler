@@ -17,6 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductOfferController extends AbstractController
 {
+    /**
+     * @param string $slug
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
     #[Route('/product/{slug}', name: 'app_product_offer')]
     public function __invoke(
         string $slug,

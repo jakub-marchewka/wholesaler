@@ -11,6 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserIndexController extends AbstractController
 {
+    /**
+     * @return Response
+     */
     #[Route('/user', name: 'app_user')]
     public function __invoke(): Response
     {

@@ -12,6 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminFileDeleteController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param AdminFileDeleteService $deleteService
+     * @return JsonResponse
+     */
     #[Route('/admin/file/delete', name: 'app_admin_file_delete')]
     public function __invoke(Request $request, AdminFileDeleteService $deleteService): JsonResponse
     {

@@ -15,6 +15,11 @@ class AdminFileDeleteService
     {
     }
 
+    /**
+     * @param string $adminFileId
+     * @param string $directory
+     * @return bool
+     */
     public function delete(string $adminFileId, string $directory): bool
     {
         $adminFile = $this->entityManager->getRepository(AdminFile::class)->findOneBy(['id' => $adminFileId]);

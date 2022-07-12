@@ -18,6 +18,11 @@ class CartProductAddService
     {
     }
 
+    /**
+     * @param string $productId
+     * @param User $user
+     * @return Response
+     */
     public function add(string $productId, User $user): Response
     {
         $cart = $this->entityManager->getRepository(Cart::class)->findOneBy(['user' => $user]);
@@ -47,7 +52,5 @@ class CartProductAddService
         }
         $this->entityManager->flush();
         return new Response(true, 'Product has been added to cart.');
-
-
     }
 }

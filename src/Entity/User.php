@@ -22,49 +22,49 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private $id;
+    private ?Uuid $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $email;
+    private ?string $email;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private array $roles = [];
 
     #[ORM\Column(type: 'string')]
-    private $password;
+    private string $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $firstname;
+    private ?string $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $surname;
+    private ?string $surname;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserAddress::class, orphanRemoval: true)]
-    private $address;
+    private ArrayCollection $address;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nip;
+    private ?string $nip;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $phone;
+    private ?string $phone;
 
     #[ORM\Column(type: 'boolean')]
-    private $active = false;
+    private bool $active = false;
 
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'subscribers')]
-    private $subscribtions;
+    private ArrayCollection $subscribtions;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Cart::class, cascade: ['persist', 'remove'])]
-    private $cart;
+    private ?Cart $cart;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
-    private $orders;
+    private ArrayCollection $orders;
 
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: ProductComment::class, orphanRemoval: true)]
-    private $productComments;
+    private ArrayCollection $productComments;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductQuestion::class, orphanRemoval: true)]
-    private $productQuestions;
+    private ArrayCollection $productQuestions;
 
 
     public function __construct()
