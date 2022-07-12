@@ -40,3 +40,4 @@ require('./js/shop/offerQuestion');
 
 require('./js/user/changePassword.js');
 require('./js/user/questions.js');
+require('./js/user/changeEmail.js');

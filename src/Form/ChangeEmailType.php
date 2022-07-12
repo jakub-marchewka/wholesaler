@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -16,9 +17,13 @@ class ChangeEmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('emailRepeat', EmailType::class, [
-                'mapped' => false
+            ->add('email', RepeatedType::class, [
+                'type' => EmailType::class,
+                'mapped' => true,
+                'invalid_message' => 'The email fields must match.',
+                'required' => true,
+                'first_options'  => ['label' => 'Email'],
+                'second_options' => ['label' => 'Repeat Email'],
             ])
             ->add('password', PasswordType::class, [
                 // instead of being set onto the object directly,
