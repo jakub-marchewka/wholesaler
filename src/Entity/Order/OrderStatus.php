@@ -23,7 +23,7 @@ class OrderStatus
     private ?string $name;
 
     #[ORM\OneToMany(mappedBy: 'status', targetEntity: Order::class)]
-    private ArrayCollection $orders;
+    private Collection $orders;
 
     public function __construct()
     {

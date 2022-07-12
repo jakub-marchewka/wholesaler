@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -40,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $surname;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserAddress::class, orphanRemoval: true)]
-    private ArrayCollection $address;
+    private Collection $address;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $nip;
@@ -52,19 +53,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private bool $active = false;
 
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'subscribers')]
-    private ArrayCollection $subscribtions;
+    private Collection $subscribtions;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Cart::class, cascade: ['persist', 'remove'])]
     private ?Cart $cart;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
-    private ArrayCollection $orders;
+    private Collection $orders;
 
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: ProductComment::class, orphanRemoval: true)]
-    private ArrayCollection $productComments;
+    private Collection $productComments;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductQuestion::class, orphanRemoval: true)]
-    private ArrayCollection $productQuestions;
+    private Collection $productQuestions;
 
 
     public function __construct()

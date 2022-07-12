@@ -25,7 +25,7 @@ class Cart
     private ?User $user;
 
     #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartProduct::class, orphanRemoval: true)]
-    private ArrayCollection $cartProducts;
+    private Collection $cartProducts;
 
     public function __construct()
     {

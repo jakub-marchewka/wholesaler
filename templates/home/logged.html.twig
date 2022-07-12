@@ -7,4 +7,11 @@
             {{ include('parts/productCard.html.twig') }}
         {% endfor %}
     </div>
+    <div class="row">
+        <div class="col">
+            <div class="pagination mt-3 d-flex justify-content-center">
+                {{ knp_pagination_render(products, '/parts/pagination.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

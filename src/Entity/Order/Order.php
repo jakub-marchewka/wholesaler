@@ -38,10 +38,10 @@ class Order
     private ?OrderStatus $status;
 
     #[ORM\OneToMany(mappedBy: 'orderEntity', targetEntity: OrderStatusLog::class, orphanRemoval: true)]
-    private ArrayCollection $orderStatusLogs;
+    private Collection $orderStatusLogs;
 
     #[ORM\OneToMany(mappedBy: 'orderEntity', targetEntity: OrderProduct::class, orphanRemoval: true)]
-    private ArrayCollection $orderProducts;
+    private Collection $orderProducts;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $email;

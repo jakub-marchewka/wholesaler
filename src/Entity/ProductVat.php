@@ -23,7 +23,7 @@ class ProductVat
     private ?int $value;
 
     #[ORM\OneToMany(mappedBy: 'vat', targetEntity: Product::class)]
-    private ArrayCollection $products;
+    private Collection $products;
 
     public function __construct()
     {

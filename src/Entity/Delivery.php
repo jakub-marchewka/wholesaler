@@ -33,7 +33,7 @@ class Delivery
     private ?int $weightMax;
 
     #[ORM\OneToMany(mappedBy: 'delivery', targetEntity: Order::class)]
-    private ArrayCollection $orders;
+    private Collection $orders;
 
     public function __construct()
     {

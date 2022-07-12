@@ -46,13 +46,13 @@ class Product
     private ?ProductVat $vat;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'subscribtions')]
-    private ArrayCollection $subscribers;
+    private Collection $subscribers;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $slug;
 
     #[ORM\OneToMany(mappedBy: 'Product', targetEntity: ProductComment::class, orphanRemoval: true)]
-    private ArrayCollection $productComments;
+    private Collection $productComments;
 
     public function __construct()
     {
