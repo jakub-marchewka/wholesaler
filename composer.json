@@ -99,12 +99,13 @@
         }
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^7.1",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "*",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",
         "symfony/debug-bundle": "6.0.*",
-        "squizlabs/php_codesniffer": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^6.1",
         "symfony/stopwatch": "6.0.*",

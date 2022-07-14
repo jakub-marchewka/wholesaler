@@ -16,6 +16,8 @@ class HomeController extends AbstractController
 {
     /**
      * @param EntityManagerInterface $entityManager
+     * @param PaginatorService $paginator
+     * @param Request $request
      * @return Response
      */
     #[Route('/', name: 'app_home')]
