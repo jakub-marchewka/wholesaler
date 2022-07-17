@@ -23,7 +23,7 @@ class ProductCategory
     private ?string $name;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
-    private $products;
+    private Collection $products;
 
     public function __construct()
     {

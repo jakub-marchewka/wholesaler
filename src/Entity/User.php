@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Entity\Order\Order;
@@ -51,25 +53,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private bool $active = false;
 
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'subscribers')]
-    private $subscribtions;
+    private Collection $subscriptions;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Cart::class, cascade: ['persist', 'remove'])]
     private ?Cart $cart;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
-    private $orders;
+    private Collection $orders;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductComment::class, orphanRemoval: true)]
-    private $productComments;
+    private Collection $productComments;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductQuestion::class, orphanRemoval: true)]
-    private $productQuestions;
+    private Collection $productQuestions;
 
 
     public function __construct()
     {
         $this->address = new ArrayCollection();
-        $this->subscribtions = new ArrayCollection();
+        $this->subscriptions = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->productComments = new ArrayCollection();
         $this->productQuestions = new ArrayCollection();
@@ -169,7 +171,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddress()
+    public function getAddress(): ?Collection
     {
         return $this->address;
     }
@@ -233,25 +235,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
-    public function getSubscribtions()
+    public function getSubscriptions(): Collection
     {
-        return $this->subscribtions;
+        return $this->subscriptions;
     }
 
-    public function addSubscribtion($subscribtion): self
+    public function addSubscription($subscription): self
     {
-        if (!$this->subscribtions->contains($subscribtion)) {
-            $this->subscribtions[] = $subscribtion;
-            $subscribtion->addSubscriber($this);
+        if (!$this->subscriptions->contains($subscription)) {
+            $this->subscriptions[] = $subscription;
+            $subscription->addSubscriber($this);
         }
 
         return $this;
     }
 
-    public function removeSubscribtion($subscribtion): self
+    public function removeSubscription($subscription): self
     {
-        if ($this->subscribtions->removeElement($subscribtion)) {
-            $subscribtion->removeSubscriber($this);
+        if ($this->subscriptions->removeElement($subscription)) {
+            $subscription->removeSubscriber($this);
         }
 
         return $this;
@@ -274,7 +276,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getOrders()
+    public function getOrders(): Collection
     {
         return $this->orders;
     }
@@ -301,7 +303,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getProductComments()
+    public function getProductComments(): Collection
     {
         return $this->productComments;
     }
@@ -329,7 +331,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
-    public function getProductQuestions()
+    public function getProductQuestions(): Collection
     {
         return $this->productQuestions;
     }

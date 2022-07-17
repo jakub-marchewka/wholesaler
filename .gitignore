@@ -35,4 +35,3 @@ yarn-error.log
 /public/uploads/admin_file_upload/
 /mysql_test/
 .idea
-/mysql_test/
