@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\ProductCommentRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -42,18 +43,13 @@ class Product
     #[ORM\ManyToOne(targetEntity: ProductVat::class, inversedBy: 'products')]
     private $vat;
 
-    #[ORM\ManyToMany(
-        targetEntity: User::class,
-        inversedBy: 'subscribtions',
-        cascade: ['persist', "remove"],
-        orphanRemoval: true
-    )]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'subscribtions')]
     private $subscribers;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $slug;
 
-    #[ORM\OneToMany(mappedBy: 'Product', targetEntity: ProductComment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductComment::class, orphanRemoval: true)]
     private $productComments;
 
     public function __construct()

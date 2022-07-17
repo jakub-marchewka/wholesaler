@@ -59,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private $orders;
 
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: ProductComment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductComment::class, orphanRemoval: true)]
     private $productComments;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductQuestion::class, orphanRemoval: true)]

@@ -21,4 +21,12 @@ class ProductDeleteServiceTest extends KernelTestCase
         $productDelete = $productDeleteService->delete($productId);
         $this->assertEquals(true, $productDelete);
     }
+    public function testProductDeleteWhenProductDoNotExists()
+    {
+        self::bootKernel();
+        $container = static::getContainer();
+        $productDeleteService = $container->get(ProductDeleteService::class);
+        $productDelete = $productDeleteService->delete(Uuid::v4());
+        $this->assertEquals(false, $productDelete);
+    }
 }
