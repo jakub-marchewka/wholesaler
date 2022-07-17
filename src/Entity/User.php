@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Entity;
 
 use App\Entity\Order\Order;
@@ -41,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $surname;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserAddress::class, orphanRemoval: true)]
-    private Collection $address;
+    private $address;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $nip;
@@ -53,19 +51,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private bool $active = false;
 
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'subscribers')]
-    private Collection $subscribtions;
+    private $subscribtions;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Cart::class, cascade: ['persist', 'remove'])]
     private ?Cart $cart;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
-    private Collection $orders;
+    private $orders;
 
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: ProductComment::class, orphanRemoval: true)]
-    private Collection $productComments;
+    private $productComments;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductQuestion::class, orphanRemoval: true)]
-    private Collection $productQuestions;
+    private $productQuestions;
 
 
     public function __construct()
@@ -171,10 +169,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, UserAddress>
-     */
-    public function getAddress(): Collection
+    public function getAddress()
     {
         return $this->address;
     }
@@ -237,15 +232,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getSubscribtions(): Collection
+
+    public function getSubscribtions()
     {
         return $this->subscribtions;
     }
 
-    public function addSubscribtion(Product $subscribtion): self
+    public function addSubscribtion($subscribtion): self
     {
         if (!$this->subscribtions->contains($subscribtion)) {
             $this->subscribtions[] = $subscribtion;
@@ -255,7 +248,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeSubscribtion(Product $subscribtion): self
+    public function removeSubscribtion($subscribtion): self
     {
         if ($this->subscribtions->removeElement($subscribtion)) {
             $subscribtion->removeSubscriber($this);
@@ -281,15 +274,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
+    public function getOrders()
     {
         return $this->orders;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder($order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders[] = $order;
@@ -299,7 +289,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeOrder(Order $order): self
+    public function removeOrder($order): self
     {
         if ($this->orders->removeElement($order)) {
             // set the owning side to null (unless already changed)
@@ -311,10 +301,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, ProductComment>
-     */
-    public function getProductComments(): Collection
+    public function getProductComments()
     {
         return $this->productComments;
     }
@@ -341,10 +328,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, ProductQuestion>
-     */
-    public function getProductQuestions(): Collection
+
+    public function getProductQuestions()
     {
         return $this->productQuestions;
     }

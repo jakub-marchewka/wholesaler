@@ -1,12 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 
 namespace App\Service\Shop\Subscribtion;
 
 use App\Entity\Product;
-use App\Entity\SubscribedProduct;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -16,11 +13,6 @@ class SubscribtionSubscribeService
     {
     }
 
-    /**
-     * @param string $productId
-     * @param User $user
-     * @return bool
-     */
     public function subscribe(string $productId, User $user): bool
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $productId]);

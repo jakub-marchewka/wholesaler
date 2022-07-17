@@ -1,12 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Uid\Uuid;
@@ -25,7 +22,7 @@ class Product
     private ?string $name;
 
     #[ORM\ManyToOne(targetEntity: ProductCategory::class, inversedBy: 'products')]
-    private ?ProductCategory $category;
+    private $category;
 
     #[ORM\Column(type: 'integer')]
     private ?int $price;
@@ -43,16 +40,21 @@ class Product
     private bool $active;
 
     #[ORM\ManyToOne(targetEntity: ProductVat::class, inversedBy: 'products')]
-    private ?ProductVat $vat;
+    private $vat;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'subscribtions')]
-    private Collection $subscribers;
+    #[ORM\ManyToMany(
+        targetEntity: User::class,
+        inversedBy: 'subscribtions',
+        cascade: ['persist', "remove"],
+        orphanRemoval: true
+    )]
+    private $subscribers;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $slug;
 
     #[ORM\OneToMany(mappedBy: 'Product', targetEntity: ProductComment::class, orphanRemoval: true)]
-    private Collection $productComments;
+    private $productComments;
 
     public function __construct()
     {
@@ -161,15 +163,13 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getSubscribers(): Collection
+
+    public function getSubscribers()
     {
         return $this->subscribers;
     }
 
-    public function addSubscriber(User $subscriber): self
+    public function addSubscriber($subscriber): self
     {
         if (!$this->subscribers->contains($subscriber)) {
             $this->subscribers[] = $subscriber;
@@ -178,7 +178,7 @@ class Product
         return $this;
     }
 
-    public function removeSubscriber(User $subscriber): self
+    public function removeSubscriber($subscriber): self
     {
         $this->subscribers->removeElement($subscriber);
 
@@ -197,10 +197,7 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, ProductComment>
-     */
-    public function getProductComments(): Collection
+    public function getProductComments()
     {
         return $this->productComments;
     }
@@ -226,5 +223,4 @@ class Product
 
         return $this;
     }
-
 }

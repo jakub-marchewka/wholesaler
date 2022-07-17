@@ -34,3 +34,4 @@ yarn-error.log
 /.idea
 /public/uploads/admin_file_upload/
 /mysql_test/
+.idea

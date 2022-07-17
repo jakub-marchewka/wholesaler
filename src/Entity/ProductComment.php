@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\ProductCommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ProductCommentRepository::class)]
 class ProductComment
@@ -14,7 +15,7 @@ class ProductComment
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private ?int $id;
+    private ?Uuid $id;
 
     #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'productComments')]
     #[ORM\JoinColumn(nullable: false)]
@@ -30,7 +31,7 @@ class ProductComment
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $createdAt;
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }

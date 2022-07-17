@@ -1,6 +1,5 @@
 <?php
 
-declare(strict_types=1);
 
 namespace App\Entity\Order;
 
@@ -20,28 +19,28 @@ class Order
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
-    private ?Uuid $id;
+    private $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user;
+    private $user;
 
     #[ORM\ManyToOne(targetEntity: Delivery::class, inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: true)]
-    private ?Delivery $delivery;
+    private $delivery;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $createdAt;
+    private $createdAt;
 
     #[ORM\ManyToOne(targetEntity: OrderStatus::class, inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: true)]
-    private ?OrderStatus $status;
+    private $status;
 
     #[ORM\OneToMany(mappedBy: 'orderEntity', targetEntity: OrderStatusLog::class, orphanRemoval: true)]
-    private Collection $orderStatusLogs;
+    private $orderStatusLogs;
 
     #[ORM\OneToMany(mappedBy: 'orderEntity', targetEntity: OrderProduct::class, orphanRemoval: true)]
-    private Collection $orderProducts;
+    private $orderProducts;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $email;

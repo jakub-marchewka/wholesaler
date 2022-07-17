@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\Controller\Shop\ProductSubscription;
 
 use App\Service\Shop\Subscribtion\SubscribtionSubscribeService;

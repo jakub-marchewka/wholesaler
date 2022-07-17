@@ -24,7 +24,7 @@ class ProductDeleteService
         if (empty($product)) {
             return false;
         }
-
+        dump($product);
         $this->entityManager->remove($product);
         $this->entityManager->flush();
         return true;
