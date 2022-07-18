@@ -13,7 +13,7 @@ class SearchService
     ) {
     }
 
-    public function search(string $name): ?array
+    public function search(?string $name): ?array
     {
         return $this->productRepository->findWithName($name);
     }

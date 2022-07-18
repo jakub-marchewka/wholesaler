@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="row justify-content-end">
+        <div class="col-sm-12 col-md-6 col-xl-4 col-lg-4">
+            {{ form_start(form, {'attr':{'class': 'd-flex'}}) }}
+            {{ form_widget(form.search,
+                {'attr':
+                    {'class': 'form-control me-2', 'type': 'search', 'placeholder': 'search', 'aria-label': 'Search'}
+                })
+            }}
+            <button class="btn btn-dark" type="submit">Search</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="row mt-5">
+        {% for product in products %}
+            {{ include('parts/productCard.html.twig') }}
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="pagination mt-3 d-flex justify-content-center">
+                {{ knp_pagination_render(products, '/parts/pagination.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

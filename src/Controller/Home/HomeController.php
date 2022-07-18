@@ -21,6 +21,7 @@ class HomeController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param PaginatorService $paginator
      * @param Request $request
+     * @param SearchService $searchService
      * @return Response
      */
     #[Route('/', name: 'app_home')]
@@ -34,10 +35,14 @@ class HomeController extends AbstractController
             return $this->render('home/notLogged.html.twig');
         }
         $products = $entityManager->getRepository(Product::class)->findAll();
-        $form = $this->createForm(SearchBarType::class)->handleRequest($request);
+        $form = $this->createForm(SearchBarType::class, null, ['method' => 'GET'])->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->render('shop/search/search.html.twig', [
-                'products' => $searchService->search($form->get('search')->getData())
+                'products' => $paginator->paginate(
+                    $searchService->search($form->get('search')->getData()),
+                    $request
+                ),
+                'form' => $form->createView()
             ]);
         }
         return $this->render('home/logged.html.twig', [
