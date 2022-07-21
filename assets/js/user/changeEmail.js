@@ -13,7 +13,6 @@ $(document).ready(function () {
     function formGenerate(form = null)
     {
 
-        console.log(form);
         $.ajax({
             url: "/user/email/change",
             data: form,

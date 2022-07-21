@@ -19,7 +19,7 @@ class ProductSubscriptionIndexController extends AbstractController
     #[Route('/subscriptions', name: 'app_shop_subscriptions_index')]
     public function __invoke(EntityManagerInterface $entityManager): Response
     {
-        $subscribedProducts = $this->getUser()->getSubscribtions();
+        $subscribedProducts = $this->getUser()->getSubscriptions();
         return $this->render('shop/subscription/index.html.twig', [
             'subscribedProducts' => $subscribedProducts
         ]);

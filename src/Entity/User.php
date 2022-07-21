@@ -67,6 +67,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProductQuestion::class, orphanRemoval: true)]
     private Collection $productQuestions;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserApiToken $userApiToken = null;
+
 
     public function __construct()
     {
@@ -354,6 +357,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $productQuestion->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserApiToken(): ?UserApiToken
+    {
+        return $this->userApiToken;
+    }
+
+    public function setUserApiToken(UserApiToken $userApiToken): self
+    {
+        // set the owning side of the relation if necessary
+        if ($userApiToken->getUser() !== $this) {
+            $userApiToken->setUser($this);
+        }
+
+        $this->userApiToken = $userApiToken;
 
         return $this;
     }

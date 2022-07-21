@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[UniqueEntity(fields: ['slug'])]
@@ -21,17 +22,20 @@ class Product
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\CustomIdGenerator(class: "doctrine.uuid_generator")]
+    #[Ignore]
     private ?Uuid $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $name;
 
+    #[Ignore]
     #[ORM\ManyToOne(targetEntity: ProductCategory::class, inversedBy: 'products')]
     private ?ProductCategory $category;
 
     #[ORM\Column(type: 'integer')]
     private ?int $price;
 
+    #[Ignore]
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $priceOld;
 
@@ -41,18 +45,23 @@ class Product
     #[ORM\Column(type: 'integer')]
     private ?int $weight;
 
+    #[Ignore]
     #[ORM\Column(type: 'boolean')]
     private bool $active;
 
+    #[Ignore]
     #[ORM\ManyToOne(targetEntity: ProductVat::class, inversedBy: 'products')]
     private ?ProductVat $vat;
 
+    #[Ignore]
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'subscriptions')]
     private Collection $subscribers;
 
+    #[Ignore]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $slug;
 
+    #[Ignore]
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductComment::class, orphanRemoval: true)]
     private Collection $productComments;
 
